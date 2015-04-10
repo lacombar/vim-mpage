@@ -45,6 +45,7 @@ fun! mpage#Pager(...)
    " :MPage! : turn MultiPager off in this tab
 "   call Decho("turn MultiPager off in all windows in this tab")
    echo "turning mpaging off for all windows in this tab"
+   let t:activewin= winnr()
    noautocmd windo if exists("w:mpage")|call s:MpageOff(bufname("%"))|endif
    call s:AutoCmdHandler()
 
@@ -498,6 +499,12 @@ fun! s:MpageOff(bname)
 "	call Decho("s:mpagebuf".bufnr(bname)." didn't exist")
    endif
 
+   if t:activewin != winnr()
+    if t:activewin > winnr()
+     let t:activewin= t:activewin - 1
+    endif
+    quit
+   endif
   endif
 
 "  call Dret("s:MpageOff : s:mpagecount=".s:mpagecount)
