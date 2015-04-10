@@ -15,12 +15,36 @@ set cpo&vim
 " ---------------------------------------------------------------------
 "  Public Interface: {{{1
 com! -bang -count=0 -nargs=?	MPage	call mpage#Pager(<bang>0,<q-args> + <count>)
+com!							MPageToggle	call mpage#Toggle()
 com! -bang -count=1				MPN		call s:MpageNextWin(<count>,<bang>1)
 com! -bang -count=1				MPP		call s:MpagePrevWin(<count>,<bang>1)
 com!							MPT		call mpage#Pager(-1)
 
+" ---------------------------------------------------------------------
+" Public variables {{{1
+if !exists("g:mpage_window_prefered_width")
+	let g:mpage_window_prefered_width = 80
+endif
+
 " =====================================================================
 "  Functions: {{{1
+
+" ---------------------------------------------------------------------
+" mpage#Toggle: {{{2
+fun! mpage#Toggle()
+	if !exists("t:mpagetoggled")
+		let curwin= winnr()
+		let curwinwidth= winwidth(curwin)
+		let mpagecount= curwinwidth / g:mpage_window_prefered_width
+
+		call mpage#Pager(0, mpagecount)
+
+		let t:mpagetoggled=1
+	else
+		call mpage#Pager(1, 0)
+		unlet t:mpagetoggled
+	endif
+endfun
 
 " ---------------------------------------------------------------------
 " mpage#Pager: {{{2
