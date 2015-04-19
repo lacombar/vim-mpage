@@ -144,7 +144,7 @@ fun! s:ReSync()
 "   call Dret("s:ReSync")
    return
   endif
-  set lz
+  set lazyredraw
   let eikeep    = &ei
   set ei=CursorMoved
   let swp       = SaveWinPosn(0)
@@ -200,7 +200,7 @@ fun! s:ReSync()
   exe curwin."wincmd w"
   call RestoreWinPosn(swp)
   let &ei= eikeep
-  set nolz
+  set nolazyredraw
 "  call Dret("s:ReSync")
 endfun
 
