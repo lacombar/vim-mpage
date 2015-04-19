@@ -211,20 +211,21 @@ fun! s:ReSyncI()
   if !exists("w:mpage_insertline")
    let w:mpage_insertline= line(".")
   endif
-  if line(".") != w:mpage_insertline
-   if exists("g:mpage_autonxtwin") && winheight(0) >= winline() && line(".") != line("$")
-	norm! dd
-	let curwin= winnr()
-    call s:MpageNextWin(1,0)
-	if curwin != winnr()
-     exe "norm! \<c-y>HjO"
-     call s:ReSync()
-     startinsert
-	endif
-   endif
-   let w:mpage_insertline= line(".")
-   call s:ReSync()
+  if line(".") == w:mpage_insertline
+    return
   endif
+  if exists("g:mpage_autonxtwin") && winheight(0) >= winline() && line(".") != line("$")
+   norm! dd
+   let curwin= winnr()
+   call s:MpageNextWin(1,0)
+   if curwin != winnr()
+    exe "norm! \<c-y>HjO"
+    call s:ReSync()
+    startinsert
+   endif
+  endif
+  let w:mpage_insertline= line(".")
+  call s:ReSync()
 "  call Dret("s:ReSyncI")
 endfun
 
