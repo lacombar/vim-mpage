@@ -474,8 +474,8 @@ fun! s:MpageOn(bname)
    call SaveUserMaps("bn","z-"        ,"",sumname)
    call SaveUserMaps("bn","z."        ,"",sumname)
    call SaveUserMaps("bn","zz"        ,"",sumname)
-   call SaveUserMaps("bn","<PageDown>","",sumname)
-   call SaveUserMaps("bn","<PageUp>"  ,"",sumname)
+"   call SaveUserMaps("bn","<PageDown>","",sumname)
+"   call SaveUserMaps("bn","<PageUp>"  ,"",sumname)
    noremap <silent> <buffer> <c-b>		z^
    noremap <silent> <buffer> <c-e>		<c-e>:call <SID>ReSync()<cr>
    noremap <silent> <buffer> <c-f>		z+
@@ -487,8 +487,8 @@ fun! s:MpageOn(bname)
    noremap <silent> <buffer> z-			z-:call <SID>ReSync()<cr>
    noremap <silent> <buffer> z.			z.:call <SID>ReSync()<cr>
    noremap <silent> <buffer> zz			zz:call <SID>ReSync()<cr>
-   noremap <silent> <buffer> <PageDown>	:call <SID>MpageDown()<cr>
-   noremap <silent> <buffer> <PageUp>	:call <SID>MpageUp()<cr>
+"   noremap <silent> <buffer> <PageDown>	:call <SID>MpageDown()<cr>
+"   noremap <silent> <buffer> <PageUp>	:call <SID>MpageUp()<cr>
   endif
 
 "  call Dret("s:MpageOn")
